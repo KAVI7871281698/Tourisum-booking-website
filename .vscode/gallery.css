@@ -1,0 +1,27 @@
+.section1{
+    display: flex;
+    justify-content: space-between;
+    background-color: gray;
+}
+.section1 {
+    width: 300px;
+    height: 200px;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .section1:hover .image {
+    transform: scale(1.1); /* Zoom effect on hover */
+  }
+  .des{
+    text-align: center;
+  }
+  button{
+    margin-top: 10px;
+  }
+

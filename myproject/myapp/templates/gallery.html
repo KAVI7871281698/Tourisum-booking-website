@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="gallery.html"> -->
+</head>
+<style>
+  /* Background Animation */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    text-align: center;
+    color: white;
+}
+
+/* Keyframes for animated background */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Gallery Section */
+.gallery-container {
+    padding: 50px 0;
+}
+
+.section1 img {
+    margin: 20px;
+    width: 290px;
+    height: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.section1 img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Description Section */
+.des {
+    margin-top: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.des button {
+    background-color: #ff758c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.des button:hover {
+    background-color: #ff477e;
+}
+
+/* Full-Screen Image Overlay */
+.fullscreen-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.fullscreen-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+</style>
+<body>
+    <h1>GALLERY</h1>
+    <div class="section1" style="margin-left: 2px;  margin-top:  50px;">
+        <img src="{% static 'img/images (2).jpeg' %}" style="margin: 60px; width: 290px;" onclick="openFullScreen(this)">
+        <img src="{% static 'img/images (6).jpeg' %}" style="margin: 60px; width: 290px;">
+        <img src="{% static 'img/images (12).jpeg' %}" style="margin: 60px;height: 200px; width: 290px;" onclick="openFullScreen(this)">
+        <img src="{% static 'img/images (8).jpeg' %}" style="margin: 60px;height: 200px; width: 290px;" onclick="openFullScreen(this)">
+        <img src="{% static 'img/images (5).jpeg' %}" style="margin: 60px;height: 200px; width: 290px;" onclick="openFullScreen(this)">
+        <img src="{% static 'img/images (10).jpeg' %}" style="margin: 60px;height: 200px; width: 290px;" onclick="openFullScreen(this)">
+        <img src="{% static 'img/images (9).jpeg' %}" style="margin: 60px;height: 200px; width: 290px;" onclick="openFullScreen(this)">
+      </div>
+      <div class="des">
+        <p> write your title discription</p>
+        <button>read more</button>
+      </div>
+</body>
+<script>
+    function openFullScreen(img) {
+    // Create overlay element
+    var overlay = document.createElement("div");
+    overlay.className = "fullscreen-overlay";
+    document.body.appendChild(overlay);
+
+    // Create image element
+    var imgElement = document.createElement("img");
+    imgElement.className = "fullscreen-img";
+    imgElement.src = img.src;
+    overlay.appendChild(imgElement);
+
+    // Close overlay on click
+    overlay.onclick = function() {
+        overlay.remove();
+    }
+}
+</script>
+</html>

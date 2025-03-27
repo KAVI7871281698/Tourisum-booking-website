@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Payment</title>
+    <link rel="stylesheet" href="{% static 'booking.css' %}">
+</head>
+<body>
+    <div class="billing-container">
+        <h1>Booking Details</h1>
+
+        <form action="{% url 'success_page' booking_details.id %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="billing-summary">
+                <h2>Order Summary</h2>
+
+                <h1>{{ user_name }}</h1>
+                <h1>{{ booking_details.package_name }}</h1>
+                <label for="journey_date">Journey Date:</label>
+                <input type="date" id="journey_date" name="journey_date" required>
+
+                <label for="pickup_location">Pickup Location:</label>
+                <input type="text" id="pickup_location" name="pickup_location" required>
+
+                <label for="pickup_time">Pickup Time:</label>
+                <input type="time" id="pickup_time" name="pickup_time" required>
+
+                <label for="total_persons">Total Persons:</label>
+                <input type="number" id="total_persons" name="total_persons" required>
+
+                <label for="total_amount">Total price (₹):{{ booking_details.package_price }}</label>
+            </div>
+
+            <button type="submit" class="confirm-btn">Confirm To Booking</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/billing.js' %}"></script>
+</body>
+</html>

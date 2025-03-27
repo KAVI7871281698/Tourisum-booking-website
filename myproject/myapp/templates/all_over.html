@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Packages</title>
+    <link rel="stylesheet" href="{% static 'packages.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Explore The World with Our Best Packages</h1>
+    </header>
+    <nav>
+        <ul>
+            <li style="margin-left: 90px;"><a href="/packages">All Over India</a></li>
+            <li><a href="kerala">Kerala</a></li>
+            <li><a href="/goa">Goa</a></li>
+            <li><a href="/tamilnadu">Tamilnadu</a></li>
+            <li><a href="/agra">Agra</a></li>
+            <li><a href="/manali">Manali</a></li>
+            <!-- <li><a href="#">chennai</a></li> -->
+        </ul>
+    </nav>
+    <section class="packages">
+        {% for i in place %}
+        <div class="package-card">
+            <img src="{{ i.package_image.url }}" alt="Switzerland Tour">
+            <div class="package-info">
+                <h2>{{ i.package_name }}</h2>
+                <p>{{ i.package_description }}</p>
+                <p>Price ₹-{{ i.package_price }}</p>
+                <a href="/bookings/{{ i.id }}/"><button class="book-btn">Book Now</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <script src="{% static 'js/tourism.js' %}"></script>
+</body>
+</html>
