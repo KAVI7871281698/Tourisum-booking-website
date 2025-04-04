@@ -13,12 +13,13 @@
 
         <form action="{% url 'success_page' booking_details.id %}" method="POST">
             {% csrf_token %}
-            
+
             <div class="billing-summary">
                 <h2>Order Summary</h2>
 
                 <h1>{{ user_name }}</h1>
                 <h1>{{ booking_details.package_name }}</h1>
+                
                 <label for="journey_date">Journey Date:</label>
                 <input type="date" id="journey_date" name="journey_date" required>
 
@@ -27,17 +28,19 @@
 
                 <label for="pickup_time">Pickup Time:</label>
                 <input type="time" id="pickup_time" name="pickup_time" required>
+                
+                <label for="card_number">Card:</label>
+                <input type="text" id="card_number" name="card_number" 
+                       value="**** **** **** 2640" readonly>
 
                 <label for="total_persons">Total Persons:</label>
                 <input type="number" id="total_persons" name="total_persons" required>
 
-                <label for="total_amount">Total price (₹):{{ booking_details.package_price }}</label>
+                <label>Total price (₹): {{ booking_details.package_price }}</label>
             </div>
 
-            <button type="submit" class="confirm-btn">Confirm To Booking</button>
+            <button type="submit" class="confirm-btn">Book Now</button>
         </form>
     </div>
-
-    <script src="{% static 'js/billing.js' %}"></script>
 </body>
 </html>
