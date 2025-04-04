@@ -151,6 +151,6 @@ def user_information(request):
     users = register_page.objects.all()
     return render(request,'user_information.html',{'users':users})
 
-def logout2(request):
-    request.session.flush()
-    return redirect('index1')
+# def logout2(request):
+#     request.session.flush()
+#     return redirect('index1')
