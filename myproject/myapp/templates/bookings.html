@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Billing & Payment</title>
     <link rel="stylesheet" href="{% static 'booking.css' %}">
+    <style>
+        .billing-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .billing-summary label, .billing-summary input {
+            display: block;
+            margin: 10px 0;
+        }
+        .confirm-btn {
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="billing-container">
@@ -17,8 +36,8 @@
             <div class="billing-summary">
                 <h2>Order Summary</h2>
 
-                <h1>{{ user_name }}</h1>
-                <h1>{{ booking_details.package_name }}</h1>
+                <h3>Name: {{ user_name }}</h3>
+                <h3>Package: {{ booking_details.package_name }}</h3>
                 
                 <label for="journey_date">Journey Date:</label>
                 <input type="date" id="journey_date" name="journey_date" required>
@@ -34,13 +53,25 @@
                        value="**** **** **** 2640" readonly>
 
                 <label for="total_persons">Total Persons:</label>
-                <input type="number" id="total_persons" name="total_persons" required>
+                <input type="number" id="total_persons" name="total_persons" min="1" value="1" required oninput="updateTotalPrice()">
 
-                <label>Total price (₹): {{ booking_details.package_price }}</label>
+                <!-- Hidden field to store price per person -->
+                <input type="hidden" id="price_per_person" value="{{ booking_details.package_price }}">
+
+                <label>Total Price (₹): <span id="total_price">{{ booking_details.package_price }}</span></label>
             </div>
 
             <button type="submit" class="confirm-btn">Book Now</button>
         </form>
     </div>
+
+    <script>
+        function updateTotalPrice() {
+            const persons = document.getElementById('total_persons').value;
+            const pricePerPerson = document.getElementById('price_per_person').value;
+            const total = persons * pricePerPerson;
+            document.getElementById('total_price').innerText = total;
+        }
+    </script>
 </body>
 </html>
